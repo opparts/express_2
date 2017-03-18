@@ -1,4 +1,4 @@
-// 整个APP都要用的模板
+// 整个APP都要用的模板,Jade模板的缩进决定了这些Html元素最后排版输出之后的层次关系
 
 doctype html
 html
@@ -11,4 +11,23 @@ html
         meta(name="viewport", content='width=device-width,initial-scale=1.0')
     body
         #wrap
-
+            .container
+                h1.page-header= appTitle
+                p.lead 欢迎来到Express和Jade的应用例子
+                 a(href="http://www.weibo.com/opparts") @opparts
+                  | 请自由阅读（这是原始内容）
+                block page
+                block header
+                    div
+                        include includes/menue
+                block alert
+                    div.alert.alert-warning.hidden
+                    .content
+                        block content
+                block content
+                    footer
+                    .container
+                        p
+                            | 版权所有 @ Submit to
+                            a(href="www.hanapost.com") Hanapost.com
+                            | .
