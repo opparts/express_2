@@ -1,2 +1,24 @@
-// 创建一个新文章的模板
+// 创建一个新文章，可以编辑，并且发可以发布
 
+extend layout
+
+block page
+    - var menu = '发布'
+block content
+    h2 发布博客
+    div= error
+        // 这些都是bootstrp的CSS属性
+    div.col-md-8
+        form(action="/post" , method="POST" , role="form")
+            div.form-group
+                label(for="title") 标题
+                input#title.form-control(name="title",type="text",placeholder="输入标题")
+            div.form-group
+                label(for="slug") 关键字
+                input#slug.form-control(name="slug",type="text",placeholder="关键字")
+                span.help-block 这些关键字将会在URL里面被使用
+            div.form-group
+                label(for="text") 正文内容
+                textarea#text.form-control(row="8",name="text",placeholder="关键字")
+            p
+                button.btn.btn-primary(type="submit") 保存
