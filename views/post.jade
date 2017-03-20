@@ -1,2 +1,11 @@
 // 单篇post的模板
+//从layout中继承这个页面的模板
+extends layout
 
+//替代layout中的content这个block的内容
+block content
+    p
+        //文章的标题
+        h1= title
+        //文章的内容
+        p=text

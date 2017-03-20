@@ -1,2 +1,20 @@
 //首页，也就是博客文章post的列表模板
 
+//首先要从Layout中继承整个页面布局，例如page，header，footer之类的
+
+extends layout
+
+// 覆盖layout中的page这个block，然后
+block page
+    - var menu = 'index'
+
+block content
+    if (posts.length === 0)
+        | 没有任何博客文章
+        a(href="/login") 登录
+        | 撰写或发布文章
+    else
+        each post, index in posts
+            div
+                h2
+                    a(href="/post/#{posts.slug}")= posts.title

@@ -14,20 +14,20 @@ html
             .container
                 h1.page-header= appTitle
                 p.lead 欢迎来到Express和Jade的应用例子
-                 a(href="http://www.weibo.com/opparts") @opparts
-                  | 请自由阅读（这是原始内容）
+                    a(href="http://www.weibo.com/opparts") @opparts
+                        | 请自由阅读（这是原始内容）
                 block page
                 block header
                     div
-                        include includes/menue
+                        include includes/menu
                 block alert
                     div.alert.alert-warning.hidden
                     .content
                         block content
-                block content
+                block footer
                     footer
-                    .container
-                        p
-                            | 版权所有 @ Submit to
-                            a(href="www.hanapost.com") Hanapost.com
-                            | .
+                        .container
+                            p
+                                | 版权所有 @ Submit to
+                                a(href="www.hanapost.com") Hanapost.com
+                                | .
