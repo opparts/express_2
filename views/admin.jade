@@ -1,2 +1,34 @@
 // 管理员界面的模板
 
+extend layout
+
+block page
+    - var menu = 'admin'
+
+block content
+    div.admin
+        if (post_list.length === 0 )
+            P
+                | 没有任何文章！
+
+        else
+            //定义一个table，id为table，class类为table-striped
+            table.table.table-striped
+                //表头行
+                thead
+                    tr
+                        th(colspan="2") 操作
+                        th 博客的标题
+                //表的内容行
+                tbody
+                    //循环内容
+                    each post, index in post_list
+                        tr(data-id="#{post._id}", class=(!post.published)?'unpublished':'')
+                            td.action
+                                button.btn.btn-danger.btn-sm.glyphicon-remove(type="button")
+                                    span.glyphicon.glyphicon-remove(title="删除")
+                            td.action
+                                button.btn.btn-default.btn-sm.glyphicon-play(type="button")
+                                    span.glyphicon(class=(post.published)?"glyphicon-pause":"glyphicon-play",title=(post.published)?"Unpublished":"Published")
+                            td= post.title
+    script(type="text/javascript", src="../js/admin.js")

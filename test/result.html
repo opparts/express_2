@@ -15,26 +15,57 @@
             欢迎阅读</a></p>
         <div></div>
         <div class="alert alert-warning hidden"></div>
-        <div class="content"><h2>发布博客</h2>
-            <div><!-- 这些都是bootstrp的CSS属性--></div>
-            <div class="col-md-8">
-                <form action="/post" method="POST" role="form">
-                    <div class="form-group"><label for="title">标题</label><input id="title" name="title" type="text"
-                                                                                placeholder="输入标题" class="form-control">
-                    </div>
-                    <div class="form-group"><label for="slug">关键字</label><input id="slug" name="slug" type="text"
-                                                                                placeholder="关键字"
-                                                                                class="form-control"><span
-                            class="help-block">这些关键字将会在URL里面被使用</span></div>
-                    <div class="form-group"><label for="text">正文内容</label><textarea id="text" row="8" name="text"
-                                                                                    placeholder="关键字"
-                                                                                    class="form-control"></textarea>
-                    </div>
-                    <p>
-                        <button type="submit" class="btn btn-primary">保存</button>
-                    </p>
-                </form>
+        <div class="content">
+            <div class="admin"><!--定义一个table，id为table，class类为table-striped-->
+                <table class="table table-striped"><!--表头行-->
+                    <thead>
+                    <tr>
+                        <th colspan="2">操作</th>
+                        <th>博客的标题</th>
+                    </tr>
+                    </thead><!--表的内容行-->
+                    <tbody><!--循环内容-->
+                    <tr data-id="1">
+                        <td class="action">
+                            <button type="button" class="btn btn-danger btn-sm glyphicon-remove"><span title="删除"
+                                                                                                       class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </td>
+                        <td class="action">
+                            <button type="button" class="btn btn-default btn-sm glyphicon-play"><span
+                                    title="Unpublished" class="glyphicon glyphicon-pause"></span></button>
+                        </td>
+                        <td>nodejs编程实战</td>
+                    </tr>
+                    <tr data-id="2">
+                        <td class="action">
+                            <button type="button" class="btn btn-danger btn-sm glyphicon-remove"><span title="删除"
+                                                                                                       class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </td>
+                        <td class="action">
+                            <button type="button" class="btn btn-default btn-sm glyphicon-play"><span
+                                    title="Unpublished" class="glyphicon glyphicon-pause"></span></button>
+                        </td>
+                        <td>nodejs编程高手</td>
+                    </tr>
+                    <tr data-id="3" class="unpublished">
+                        <td class="action">
+                            <button type="button" class="btn btn-danger btn-sm glyphicon-remove"><span title="删除"
+                                                                                                       class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </td>
+                        <td class="action">
+                            <button type="button" class="btn btn-default btn-sm glyphicon-play"><span title="Published"
+                                                                                                      class="glyphicon glyphicon-play"></span>
+                            </button>
+                        </td>
+                        <td>nodejs精通7天教材</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
+            <script type="text/javascript" src="../js/admin.js"></script>
         </div>
     </div>
 </div><!-- 让footer这个div和wrap这个div属于同一层，没有从属关系，从而位于wrap的正下方，即页面的底部-->
