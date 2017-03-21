@@ -13,10 +13,12 @@ html
     body
         #wrap
             .container
-                h1.page-header= appTitle
+                //
+                //h1.page-header= appTitle
+                h1.page-header 学习站点
                 p.lead 欢迎来到Express和Jade的应用例子
                     a(href="http://www.weibo.com/opparts") @opparts
-                        | 请自由阅读（这是原始内容）
+                        | 欢迎阅读
                 block page
                 block header
                     div
@@ -25,10 +27,11 @@ html
                     div.alert.alert-warning.hidden
                     .content
                         block content
-                block footer
-                    footer
-                        .container
-                            p
-                                | 版权所有 @ Submit to
-                                a(href="www.hanapost.com") Hanapost.com
-                                | .
+        // 让footer这个div和wrap这个div属于同一层，没有从属关系，从而位于wrap的正下方，即页面的底部
+        block footer
+            footer
+                .container
+                    p
+                        | 版权所有 @
+                        a(href="www.hanapost.com") www.hanapost.com
+                        | .

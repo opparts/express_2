@@ -9,12 +9,14 @@ block page
     - var menu = 'index'
 
 block content
-    if (posts.length === 0)
+    // 如果传递进来的post_list属性是一个空数组的话
+    if (post_list.length === 0)
         | 没有任何博客文章
         a(href="/login") 登录
         | 撰写或发布文章
     else
-        each post, index in posts
+        //循环这个数组，然后从数组中取得slug和title两个属性的值
+        each post, index in post_list
             div
                 h2
-                    a(href="/post/#{posts.slug}")= posts.title
+                    a(href="/post/#{post.slug}")= post.title

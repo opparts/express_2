@@ -11,7 +11,7 @@ var data = {
     ]
 };
 
-jade.renderFile('index.jade',data, function (error,html){
+jade.renderFile('new_post.jade',data, function (error,html){
 
     if (error)
         console.log(error);

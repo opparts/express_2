@@ -1,2 +1,45 @@
-<!-- 整个APP都要用的模板,Jade模板的缩进决定了这些Html元素最后排版输出之后的层次关系--><!DOCTYPE html><html><head><title></title><script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script><link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"><link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap-theme.min.css"><script type="text/javascript" src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script><meta name="viewport" content="width=device-width,initial-scale=1.0"><meta http-equiv="Content-Type" content="text/html;charset=utf-8"></head><body><div id="wrap"><div class="container"><h1 class="page-header"></h1><p class="lead">欢迎来到Express和Jade的应用例子<a href="http://www.weibo.com/opparts">@opparts
-    请自由阅读（这是原始内容）</a></p><div></div><div class="alert alert-warning hidden"></div><div class="content"></div><footer><div class="container"><p>版权所有 @ Submit to<a href="www.hanapost.com">Hanapost.com</a>.</p></div></footer></div></div></body></html>
+<!-- 整个APP都要用的模板,Jade模板的缩进决定了这些Html元素最后排版输出之后的层次关系--><!DOCTYPE html>
+<html>
+<head><title></title>
+    <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+</head>
+<body>
+<div id="wrap">
+    <div class="container"><!----><!--h1.page-header= appTitle--><h1 class="page-header">学习站点</h1>
+        <p class="lead">欢迎来到Express和Jade的应用例子<a href="http://www.weibo.com/opparts">@opparts
+            欢迎阅读</a></p>
+        <div></div>
+        <div class="alert alert-warning hidden"></div>
+        <div class="content"><h2>发布博客</h2>
+            <div><!-- 这些都是bootstrp的CSS属性--></div>
+            <div class="col-md-8">
+                <form action="/post" method="POST" role="form">
+                    <div class="form-group"><label for="title">标题</label><input id="title" name="title" type="text"
+                                                                                placeholder="输入标题" class="form-control">
+                    </div>
+                    <div class="form-group"><label for="slug">关键字</label><input id="slug" name="slug" type="text"
+                                                                                placeholder="关键字"
+                                                                                class="form-control"><span
+                            class="help-block">这些关键字将会在URL里面被使用</span></div>
+                    <div class="form-group"><label for="text">正文内容</label><textarea id="text" row="8" name="text"
+                                                                                    placeholder="关键字"
+                                                                                    class="form-control"></textarea>
+                    </div>
+                    <p>
+                        <button type="submit" class="btn btn-primary">保存</button>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div><!-- 让footer这个div和wrap这个div属于同一层，没有从属关系，从而位于wrap的正下方，即页面的底部-->
+<footer>
+    <div class="container"><p>版权所有 @<a href="www.hanapost.com">www.hanapost.com</a>.</p></div>
+</footer>
+</body>
+</html>
