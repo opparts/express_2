@@ -7,6 +7,7 @@ block page
 
 block content
     div.admin
+            // post_list是从JS文件传入的data数组里面的其中一个元素，它的名字叫post_list
         if (post_list.length === 0 )
             P
                 | 没有任何文章！
@@ -22,8 +23,11 @@ block content
                 //表的内容行
                 tbody
                     //循环内容
+                        // 定义一个变量post，它的内容是来自post_list遍历（render函数传入的，可以参考test3.js文件的内容）
                     each post, index in post_list
+                                                   //Jade是支持在模板里面直接使用JavaScript的，这点要记住
                         tr(data-id="#{post._id}", class=(!post.published)?'unpublished':'')
+                                    //输出id，#输出为值用#{ }                 直接三元表达式
                             td.action
                                 button.btn.btn-danger.btn-sm.glyphicon-remove(type="button")
                                     span.glyphicon.glyphicon-remove(title="删除")
