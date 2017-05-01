@@ -19,8 +19,11 @@ db.open(function (error, dbconnection) {
         process.exit(1);
     }
 
+    //定义一个新的对象
     var new_record = {
-        b:'12345'
+        b:'12345',
+        c:'678910',
+        d:'新的列'
     }
 
     //向集合test中插入一条记录
@@ -30,7 +33,7 @@ db.open(function (error, dbconnection) {
             process.exit(1);
 
         }
-        console.info('要插入这条记录', new_record);
+        //console.info('要插入这条记录', new_record);
 
     });
 
@@ -41,6 +44,7 @@ db.open(function (error, dbconnection) {
             process.exit(1);
         }
         console.log(item);
+
     });
 
 })

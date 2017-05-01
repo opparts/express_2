@@ -4,7 +4,7 @@ var jade = require('jade');
 var fs   = require('fs');
 
 var data = {
-    post_list:[
+    all_post:[
         {title:'nodejs编程实战',slug:'nodejs-tutoal1'},
         {title:'nodejs编程高手',slug:'nodejs-tutoal1'},
         {title:'nodejs精通7天教材',slug:'nodejs-tutoal1'},
