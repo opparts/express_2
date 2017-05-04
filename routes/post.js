@@ -12,14 +12,20 @@ exports.show = function (req, res, next) {
 };
 
 /*
- * GET article page.  返回slug=xxx的所有的文章列表
+ * GET article page.  返回slug=xxx的所有的文章列表,不做任何排序
  */
 exports.search = function (req, res, next) {
     if (!req.params.slug) return next(new Error('No article slug.'));
-    req.collections.articles.find({slug: req.params.slug}, function (error, article) {
+    req.collections.articles.find({slug: req.params.slug}).toArray(function (error, articles) {
         if (error) return next(error);
-        if (!article.published) return res.send(401);
-        res.render('search_result', {all_post: articles});
+
+        res.render(
+            'search_result',            //加载search_result.jade这个模板文件
+            {
+                all_post: articles,
+                slug: req.params.slug   //将slug作为新参数，传入到search_result的jade的模板文件中
+            }
+        );
     });
 };
 

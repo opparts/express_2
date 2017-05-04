@@ -7,8 +7,7 @@ block content
         div.search_result_list
             // post_list是从JS文件传入的data数组里面的其中一个元素，它的名字叫post_list
         if (all_post.length === 0 )
-            P
-                | 没有找到Slug为 #{post.slug} 的任何文章！
+            P= "没有找到任何Slug为" + slug +"相关的博客文章！"
 
         else
             //定义一个table，id为table，class类为table-striped
@@ -18,7 +17,7 @@ block content
                     tr
                         th(colspan="2") 文章标题
                         th 主要内容
-                        th Tag
+                        th 标签
                 //表的内容行
                 tbody
                     //循环内容
@@ -26,7 +25,9 @@ block content
                         // Jade是支持在模板里面直接使用JavaScript的，这点要记住
                         // 还有就是，尼玛以后再也不要在代码后面写注释！！！！！！！！
                     each post, index in all_post
-                        tr(data-id="#{post._id}", )
-                            td = post.title
-                            td = post.text
-                            td = post.slug
+                        tr(data-id="#{post._id}")
+                            td= post.title
+                            td= post.text
+                            td= post.slug
+                            td= "test"
+                            // "="符号要紧贴html的标记否则就会出错
