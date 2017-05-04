@@ -7,7 +7,7 @@ exports.show = function(req, res, next) {
     req.collections.articles.findOne({slug: req.params.slug}, function(error, article) {
         if (error) return next(error);
         if (!article.published) return res.send(401);
-        res.render('article', article);
+        res.render('post', article);
     });
 };
 

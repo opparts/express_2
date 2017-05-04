@@ -32,36 +32,42 @@ app.use(function (req, res, next) {
     return next();
 });
 
+//------------------------------------------------------------------------------//
+//开始设置环境变量
 app.set('port', 3000);
 app.set('views', path.join(__dirname, 'views'));    //__dirname是当前文件的绝对路径
 app.set('view engine', 'jade');
 
-//设定一个静态的引用目录
+//设定一个静态的引用目录，将其设置为lib，然后在其他引用这个node_modules的地方全部设置为"lib/xxx"就可以引用
+//这个路径下的文件对象
 app.use("/lib",express.static(path.join(__dirname, 'node_modules')));
 
 // 静态内容暂时不设置
 app.use(logger('dev'));
 
+//------------------------------------------------------------------------------//
 //处理服务器的路由， 主要是用get、post来渲染JADE模板文件成为html文件
+
+//处理/的路由，将其设置routes（前面引入的）下面的index.js文件
 app.get('/', routes.index);                                         //ok
-//index.js文件
 
+//user.js文件   将login请求定位到user.js文件的login方法中
 app.get('/login', routes.user.login);                               //ok
-//user.js文件   切换到登录界面 login是js文件中定义的函数
 
-app.get('/logout', routes.user.logout);                             //ok
 //user.js文件  登出
+app.get('/logout', routes.user.logout);                             //ok
 
-app.post('/login', routes.user.authenticate);
 //user.js文件    点击"登录"button之后的认证
+app.post('/login', routes.user.authenticate);
 
-app.get('/admin', routes.post.admin);
-//post  管理博客
+//post  管理博客， 定位到post文件的admin方法中
+app.get('/admin', routes.post.admin);                               //ok
 
-app.get('/post', routes.post.post);
+app.get('/post', routes.post.post);                                 // 正在调试中.....
 
-app.post('/post', routes.post.newpost) ;
 //post 发布新博客
+app.post('/post', routes.post.newpost) ;
+
 
 app.post('/post/:slug', routes.post.show) ;
 //user.js文件      //显示页面
