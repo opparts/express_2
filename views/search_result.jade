@@ -1,0 +1,32 @@
+
+//从layout中继承这个页面的模板
+extends layout
+
+//替代layout中的content这个block的内容
+block content
+        div.search_result_list
+            // post_list是从JS文件传入的data数组里面的其中一个元素，它的名字叫post_list
+        if (all_post.length === 0 )
+            P
+                | 没有找到Slug为 #{post.slug} 的任何文章！
+
+        else
+            //定义一个table，id为table，class类为table-striped
+            table.table.table-striped
+                //表头行
+                thead
+                    tr
+                        th(colspan="2") 文章标题
+                        th 主要内容
+                        th Tag
+                //表的内容行
+                tbody
+                    //循环内容
+                        // 定义一个变量post，它的内容是来自post_list遍历（render函数传入的，可以参考test3.js文件的内容）
+                        // Jade是支持在模板里面直接使用JavaScript的，这点要记住
+                        // 还有就是，尼玛以后再也不要在代码后面写注释！！！！！！！！
+                    each post, index in all_post
+                        tr(data-id="#{post._id}", )
+                            td = post.title
+                            td = post.text
+                            td = post.slug

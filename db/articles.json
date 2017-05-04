@@ -1,21 +1,21 @@
 [
   {
-    "title":"node入门",
-    "slug" :"express",
+    "title":"30天精通Hadoop编程",
+    "slug" :"hadoop",
     "published" : true,
-    "text" :"Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行环境。 Node.j使用了一个事件驱动、非阻塞式 I/O 的模型，其轻量又高效。Node.js 的包管理器 npm，是全球最大的开源库生态系统"
+    "text" :"Hadoop是一个分布式的计算平台，有HDFS，HBASE，HIVE等很多的东西来组成这个生态圈"
   },
   {
     "title":"spark",
     "slug" :"spark",
     "published" : true,
-    "text" :"Apache Spark 是专为大规模数据处理而设计的快速通用的计算引擎。Spark是UC Berkeley AMP lab (加州大学伯克利分校的AMP实验室)所开源的类Hadoop MapReduce的通用并行框架，Spark，拥有Hadoop MapRedu所具有的优点；"
+    "text" :"A并行框架，Spark，拥有Hadoop MapRedu所具有的优点；"
   },
   {
     "title":"node高级教程",
     "slug" :"npm",
     "published" : false,
-    "text" :"Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行环境。 Node.js使用了一个事件驱动、非阻塞式 I/O 的模型，使其轻量又高效。Node.js 的包管理器 npm，是全球最大的开源库生态系统"
+    "text" :"球最大的开源库生态系统"
   }
 
 ]

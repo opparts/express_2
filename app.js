@@ -22,7 +22,7 @@ var session = require('express-session'),
     methodoverride = require('method-override');
 
 var app = express();
-app.locals.appTitle = '使用NodeJS重构Wordpress博客';
+app.locals.title = '博客列表';
 
 app.use(function (req, res, next) {
     if (!collections.articles || !collections.users) {
@@ -40,7 +40,8 @@ app.set('view engine', 'jade');
 
 //设定一个静态的引用目录，将其设置为lib，然后在其他引用这个node_modules的地方全部设置为"lib/xxx"就可以引用
 //这个路径下的文件对象
-app.use("/lib",express.static(path.join(__dirname, 'node_modules')));
+app.use("/lib",     express.static(path.join(__dirname, 'node_modules')));
+app.use("/public",  express.static(path.join(__dirname, 'public')));
 
 // 静态内容暂时不设置
 app.use(logger('dev'));
@@ -61,51 +62,56 @@ app.get('/logout', routes.user.logout);                             //ok
 app.post('/login', routes.user.authenticate);
 
 //post  管理博客， 定位到post文件的admin方法中
-app.get('/admin', routes.post.admin);                               //ok
+app.get('/admin',       routes.post.admin);                               //ok
 
-app.get('/post', routes.post.post);                                 // 正在调试中.....
+app.get('/post',        routes.post.post);                                 //ok, title问题待解决
 
 //post 发布新博客
-app.post('/post', routes.post.newpost) ;
+app.post('/post',       routes.post.newpost) ;
 
+//查询slug为xxx的post页面，貌似show方法只返回一条记录
+app.get('/post/:slug',  routes.post.show) ;
 
-app.post('/post/:slug', routes.post.show) ;
-//user.js文件      //显示页面
+//查询slug为xxx的post, 返回所有的
+app.get('/search/:slug',  routes.post.search) ;
 
-
+//------------------------------------------------------------------------------//
 //使用rest api routes，主要是javascript执行AJAX方法，输出json  - 包含GET/POST/PUT/DELETE方法
-app.get('/api/posts', routes.post.list);        //
-app.post('/api/posts', routes.post.add);
-app.put('/api/post/:id', routes.post.edit);
-app.del('/api/post/:id', routes.post.del);
+app.get('/api/posts',       routes.post.list);        //
+app.post('/api/posts',      routes.post.add);
+app.put('/api/post/:id',    routes.post.edit);
+app.del('/api/post/:id',    routes.post.del);
 
+
+//------------------------------------------------------------------------------//
+//处理没有定义的请求，全部都当404来处理，因为：的确我们没有定义http服务
 app.all('*', function (req, res) {
     res.send(404);
-
 })
 
-
-//启动http 服务
+//------------------------------------------------------------------------------//
+//创建http服务
 var server = http.createServer(app);
 
-
-var boot = function () {
+var start = function () {
     server.listen(app.get('port'), function () {
         console.info('正在监听端口：' + app.get('port'));
     });
 }
 
-var shutdown = function () {
+var stop = function () {
     server.close();
 }
 
+//启动http服务
 if (require.main === module) {
-    boot();
+    console.info('运行app作为主模块');
+    start();
 }
 else {
     console.info('Runing app as a module');
-    exports.boot = boot;
-    exports.shutdown = shutdown;
+    exports.start = start;
+    exports.stop = shutdown;
     exports.port = app.get('port');
 }
 

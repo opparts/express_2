@@ -1,7 +1,7 @@
 
 
 exports.list = function(req, res){
-    res.send('respond with a resource');
+    res.send('返回所有的用户');
 };
 
 
@@ -14,7 +14,7 @@ exports.login = function(req, res, next) {
 };
 
 /*
- * GET logout route.
+ * GET logout route. 重新定向到首页
  */
 
 exports.logout = function(req, res, next) {
