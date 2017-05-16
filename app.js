@@ -2,6 +2,10 @@
  * Created by apple on 2017/5/1.
  */
 
+// 27017是MongoDB的端口
+// brew services mongodb start
+
+
 var express = require('express'),
     routes = require('./routes'),
     http = require('http'),
@@ -38,6 +42,9 @@ app.set('port', 3000);
 app.set('views', path.join(__dirname, 'views'));    //__dirname是当前文件的绝对路径
 app.set('view engine', 'jade');
 
+
+
+
 //设定一个静态的引用目录，将其设置为lib，然后在其他引用这个node_modules的地方全部设置为"lib/xxx"就可以引用
 //这个路径下的文件对象
 app.use("/lib",     express.static(path.join(__dirname, 'node_modules')));
@@ -45,6 +52,20 @@ app.use("/public",  express.static(path.join(__dirname, 'public')));
 
 // 静态内容暂时不设置
 app.use(logger('dev'));
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded());
+app.use(methodoverride());
+
+
+
+
+
+
+if ('development' == app.get('env')) {
+    app.use(errorhandler());
+}
+
+
 
 //------------------------------------------------------------------------------//
 //处理服务器的路由， 主要是用get、post来渲染JADE模板文件成为html文件
@@ -61,24 +82,24 @@ app.get('/logout', routes.user.logout);                             //ok
 //user.js文件    点击"登录"button之后的认证
 app.post('/login', routes.user.authenticate);
 
-//post  管理博客， 定位到post文件的admin方法中
+//              管理博客， 定位到post文件的admin方法中
 app.get('/admin',       routes.post.admin);                               //ok
+app.get('/post',        routes.post.post);                                //ok, title问题待解决 - 在post.js中注释掉了
+app.get('/new_post',    routes.post.new_post);                                //ok, title问题待解决 - 在post.js中注释掉了
 
-app.get('/post',        routes.post.post);                                 //ok, title问题待解决
 
 //post 发布新博客
-app.post('/post',       routes.post.newpost) ;
+app.post('/post',       routes.post.newpost) ;                          //
 
-//查询slug为xxx的post页面，貌似show方法只返回一条记录
+//查询slug为xxx的post页面，貌似show方法只返回一条记录                         //OK   返回slug=xx的第一条
 app.get('/post/:slug',  routes.post.show) ;
-
-//查询slug为xxx的post, 返回所有的
+//查询slug为xxx的post, 返回所有的                                         //ok   返回slug=xx的所有的post
 app.get('/search/:slug',  routes.post.search) ;
 
 //------------------------------------------------------------------------------//
 //使用rest api routes，主要是javascript执行AJAX方法，输出json  - 包含GET/POST/PUT/DELETE方法
-app.get('/api/posts',       routes.post.list);        //
-app.post('/api/posts',      routes.post.add);
+app.get('/api/posts',       routes.post.list);        //添加文章到草稿
+app.post('/api/posts',      routes.post.add);         //在admin中将草稿---变成-->发布状态
 app.put('/api/post/:id',    routes.post.edit);
 app.del('/api/post/:id',    routes.post.del);
 

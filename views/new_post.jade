@@ -9,16 +9,17 @@ block content
     div= error
         // 这些都是bootstrp的CSS属性
     div.col-md-8
-        form(action="/post" , method="POST" , role="form")
+        //发布文章就调用POST类型的，请求将给app.js的POST方法
+        form(action="/post" , method="post" , role="form")
             div.form-group
-                label(for="title") 标题
+                label(for="title") Title
                 input#title.form-control(name="title",type="text",placeholder="输入标题")
             div.form-group
-                label(for="slug") 关键字
+                label(for="slug") Slug
                 input#slug.form-control(name="slug",type="text",placeholder="关键字")
                 span.help-block 这些关键字将会在URL里面被使用
             div.form-group
-                label(for="text") 正文内容
-                textarea#text.form-control(rows="8",name="text",placeholder="关键字")
+                label(for="content") Text
+                textarea#content.form-control(rows="8",name="content",placeholder="文章的正文内容")
             p
                 button.btn.btn-primary(type="submit") 保存

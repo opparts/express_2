@@ -10,8 +10,9 @@ block content
             // post_list是从JS文件传入的data数组里面的其中一个元素，它的名字叫post_list
         if (all_post.length === 0 )
             P
-                | 没有任何文章！
-
+                | 没有任何文章！增加一个新文章
+                a(href="/post") 新文章
+                |.
         else
             //定义一个table，id为table，class类为table-striped
             table.table.table-striped
@@ -36,4 +37,4 @@ block content
                                 button.btn.btn-default.btn-sm.glyphicon-play(type="button")
                                     span.glyphicon(class=(post.published)?"glyphicon-pause":"glyphicon-play",title=(post.published)?"Unpublished":"Published")
                             td= post.title
-                script(type="text/javascript", src="../js/admin.js")
+                script(type="text/javascript", src="/public/js/admin.js")
