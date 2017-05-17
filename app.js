@@ -43,17 +43,17 @@ app.set('views', path.join(__dirname, 'views'));    //__dirname是当前文件�
 app.set('view engine', 'jade');
 
 
-
-
 //设定一个静态的引用目录，将其设置为lib，然后在其他引用这个node_modules的地方全部设置为"lib/xxx"就可以引用
 //这个路径下的文件对象
+
 app.use("/lib",     express.static(path.join(__dirname, 'node_modules')));
 app.use("/public",  express.static(path.join(__dirname, 'public')));
 
 // 静态内容暂时不设置
 app.use(logger('dev'));
-app.use(bodyparser.json());
-app.use(bodyparser.urlencoded());
+app.use(bodyparser.json());                             // 用来解决使用 content-type : application/json的提交的请求
+app.use(bodyparser.urlencoded({ extended: true }));       // 用来解决使用 Content-type : application/x-www-form-urlencoded 提交的请求
+                                                        // form表格提交post请求的时候，默认就是这个格式.
 app.use(methodoverride());
 
 
@@ -101,13 +101,14 @@ app.get('/search/:slug',  routes.post.search) ;
 app.get('/api/posts',       routes.post.list);        //添加文章到草稿
 app.post('/api/posts',      routes.post.add);         //在admin中将草稿---变成-->发布状态
 app.put('/api/post/:id',    routes.post.edit);
-app.del('/api/post/:id',    routes.post.del);
+app.delete('/api/post/:id',    routes.post.del);
 
 
 //------------------------------------------------------------------------------//
 //处理没有定义的请求，全部都当404来处理，因为：的确我们没有定义http服务
 app.all('*', function (req, res) {
-    res.send(404);
+    //res.send(404);
+    res.sendStatus(404);
 })
 
 //------------------------------------------------------------------------------//

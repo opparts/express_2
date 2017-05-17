@@ -6,20 +6,21 @@ block page
     - var menu = '发布'
 block content
     h2 发布博客
-    div= error
+    div.col-md-7
+        div= error
         // 这些都是bootstrp的CSS属性
     div.col-md-8
         //发布文章就调用POST类型的，请求将给app.js的POST方法
         form(action="/post" , method="post" , role="form")
             div.form-group
-                label(for="title") Title
+                label(for="title") 博客标题
                 input#title.form-control(name="title",type="text",placeholder="输入标题")
             div.form-group
-                label(for="slug") Slug
+                label(for="slug") 标签
                 input#slug.form-control(name="slug",type="text",placeholder="关键字")
                 span.help-block 这些关键字将会在URL里面被使用
             div.form-group
-                label(for="content") Text
+                label(for="content") 博客正文
                 textarea#content.form-control(rows="8",name="content",placeholder="文章的正文内容")
             p
                 button.btn.btn-primary(type="submit") 保存

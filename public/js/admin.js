@@ -5,11 +5,11 @@
 //这个admin.js将会在admin.jade的文件中被引用
 
 $.ajaxSetup({
-    xhrFields: {withCredentials: true},
-    error: function(xhr, status, error) {
-        $('.alert').removeClass('hidden');
-        $('.alert').html("Status: " + status + ", error: " + error);
-    }
+  //  xhrFields: {withCredentials: true},
+  //  error: function(xhr, status, error) {
+  //      $('.alert').removeClass('hidden');
+  //      $('.alert').html("Status: " + status + ", error: " + error);
+  //  }
 });
 
 var findTr = function(event) {
