@@ -99,7 +99,7 @@ app.get('/search/:slug',  routes.post.search) ;
 //------------------------------------------------------------------------------//
 //使用rest api routes，主要是javascript执行AJAX方法，输出json  - 包含GET/POST/PUT/DELETE方法
 app.get('/api/posts',       routes.post.list);        //添加文章到草稿
-app.post('/api/posts',      routes.post.add);         //在admin中将草稿---变成-->发布状态
+app.post('/api/posts',      routes.post.add);         //来自一个form的POST方法，提交blog，然后插入数据库中
 app.put('/api/post/:id',    routes.post.edit);
 app.delete('/api/post/:id',    routes.post.del);
 

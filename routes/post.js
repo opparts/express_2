@@ -62,7 +62,7 @@ exports.list = function (req, res, next) {
 
 
 /*
- * POST article API.
+ * POST article API. - 已经验证了
  * 发布一个文章，将新文章的内容，插入到数据库表articles中，插入的文章的发布状态默认就设置为"false"，表示未被公开出来，要审批
  */
 
@@ -83,10 +83,12 @@ exports.add = function (req, res, next) {
 
 /*
  * PUT article API.
+ * 这个测试已经OK了。
  */
 
 exports.edit = function (req, res, next) {
-    if (!req.params.id) return next(new Error('No article ID.'));
+    //if (!req.params.id) return next(new Error('No article ID.'));
+    console.log("put" + req.params.id);
     req.collections.articles.updateById(req.params.id, {$set: req.body.article}, function (error, count) {
         if (error) return next(error);
         res.send({affectedCount: count});
@@ -95,10 +97,12 @@ exports.edit = function (req, res, next) {
 
 /*
  * DELETE article API.
+ * 删除数据从数据库中
  */
 
 exports.del = function (req, res, next) {
     if (!req.params.id) return next(new Error('No article ID.'));
+    console.log("delete"+req.params.id);
     req.collections.articles.removeById(req.params.id, function (error, count) {
         if (error) return next(error);
         res.send({affectedCount: count});

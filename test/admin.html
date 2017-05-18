@@ -1,0 +1,65 @@
+<!-- 整个APP都要用的模板,Jade模板的缩进决定了这些Html元素最后排版输出之后的层次关系--><!DOCTYPE html>
+<html>
+<head><title></title>
+    <script type="text/javascript" src="/lib/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+</head>
+<body>
+<div id="wrap">
+    <div class="container"><!----><!--h1.page-header= appTitle--><h1 class="page-header">学习站点</h1>
+        <p class="lead">欢迎来到Express和Jade的应用例子<a href="http://www.weibo.com/opparts">@opparts
+            欢迎阅读</a></p>
+        <div>
+            <div class="menu">
+                <ul class="nav nav-pills">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/post">Post</a></li>
+                    <li class="active"><a href="/admin">Admin</a></li>
+                    <li><a href="/logout">Log out</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="alert alert-warning hidden"></div>
+        <div class="content">
+            <div class="admin"><!--定义一个table，id为table，class类为table-striped-->
+                <table class="table table-striped"><!--表头行-->
+                    <thead>
+                    <tr>
+                        <th colspan="2">操作</th>
+                        <th>博客的标题</th>
+                        <th>博客的内容</th>
+                    </tr>
+                    </thead><!--表的内容行-->
+                    <tbody><!-- 循环内容--><!-- 定义一个变量post，它的内容是来自post_list遍历（render函数传入的，可以参考test3.js文件的内容）-->
+                    <!-- Jade是支持在模板里面直接使用JavaScript的，这点要记住--><!-- 还有就是，尼玛以后再也不要在代码后面写注释！！！！！！！！-->
+                    <!-- 输出id，在字符串中输出为值用#{ } 直接三元表达式-->
+                    <tr data-id="591daff6804aa5055c949a8d" class="unpublished">
+                        <td class="action">
+                            <button type="button" class="btn btn-danger btn-sm glyphicon-remove"><span title="delete"
+                                                                                                       class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </td>
+                        <td class="action">
+                            <button type="button" class="btn btn-default btn-sm glyphicon-play"><span title="Published"
+                                                                                                      class="glyphicon glyphicon-play"></span>
+                            </button>
+                        </td>
+                        <td>对对对</td>
+                        <td>d'd'd</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <script type="text/javascript" src="/public/js/admin.js"></script>
+        </div>
+    </div>
+</div><!-- 让footer这个div和wrap这个div属于同一层，没有从属关系，从而位于wrap的正下方，即页面的底部-->
+<footer>
+    <div class="container"><p>版权所有 @<a href="www.hanapost.com">www.hanapost.com</a>.</p></div>
+</footer>
+</body>
+</html>

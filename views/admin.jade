@@ -4,10 +4,10 @@ extend layout
 
 block page
     - var menu = 'admin'
-
+// post_list是从JS文件传入的data数组里面的其中一个元素，它的名字叫post_list
+    //在div的下面写注释，会导致下面的table
 block content
     div.admin
-            // post_list是从JS文件传入的data数组里面的其中一个元素，它的名字叫post_list
         if (all_post.length === 0 )
             P
                 | 没有任何文章！增加一个新文章
@@ -21,20 +21,24 @@ block content
                     tr
                         th(colspan="2") 操作
                         th 博客的标题
+                        th 博客的内容
                 //表的内容行
                 tbody
-                    //循环内容
-                        // 定义一个变量post，它的内容是来自post_list遍历（render函数传入的，可以参考test3.js文件的内容）
-                        // Jade是支持在模板里面直接使用JavaScript的，这点要记住
-                        // 还有就是，尼玛以后再也不要在代码后面写注释！！！！！！！！
+                    // 循环内容
+                    // 定义一个变量post，它的内容是来自post_list遍历（render函数传入的，可以参考test3.js文件的内容）
+                    // Jade是支持在模板里面直接使用JavaScript的，这点要记住
+                    // 还有就是，尼玛以后再也不要在代码后面写注释！！！！！！！！
+                    // 输出id，在字符串中输出为值用#{ } 直接三元表达式
                     each post, index in all_post
                         tr(data-id="#{post._id}", class=(!post.published)?'unpublished':'')
-                                    //输出id，#输出为值用#{ }                 直接三元表达式
                             td.action
                                 button.btn.btn-danger.btn-sm.glyphicon-remove(type="button")
-                                    span.glyphicon.glyphicon-remove(title="删除")
+                                    span.glyphicon.glyphicon-remove(title="delete")
                             td.action
                                 button.btn.btn-default.btn-sm.glyphicon-play(type="button")
-                                    span.glyphicon(class=(post.published)?"glyphicon-pause":"glyphicon-play",title=(post.published)?"Unpublished":"Published")
+                                    span.glyphicon(class=(post.published)?"glyphicon-pause":"glyphicon-play",
+                                    title=(post.published)?"Unpublished":"Published")
                             td= post.title
+                            td= post.text
     script(type="text/javascript", src="/public/js/admin.js")
+
